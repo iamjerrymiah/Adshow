@@ -1,0 +1,155 @@
+<%- include('includes/dash-header') %>
+
+	<div class="section" style="background-color: rgb(32, 32, 32);">
+		<div class="container" 
+        style="margin-top: -80px;">
+			<div class="row g-5">
+
+            
+
+                <div class="col-lg-10">
+					<div class="post-entry d-block small-post-entry-v">
+						<div class="content">
+
+            <div class="post-meta mb-1">
+                <h2 class="h2 fw-bold" 
+                style="text-align: center; color: #4dc3ff; margin-bottom: 30px;">YOUR ACCOUNT SETTINGS</h2>
+
+                <form action="" class="row form-user-photo">
+                    <div class="col-lg-10">
+                        <div class="post-entry d-block small-post-entry-v">
+                            <div class="content">
+                                <a class="post-author d-flex align-items-center">
+                                    <div>
+                                        <img src="images/users/<%= user.photo %>"  alt="Image" 
+                                        style="margin-bottom: 20px; height: 250px;">
+                                    </div>
+                                </a>
+    
+                                <div class="post-meta mb-1">
+                                    <input type="file" accept='image/*' id='photo' name='photo' class="inputfile" data-multiple-caption="{count} files selected" multiple>
+                                    <label for="photo" style="width: 300px; text-align: center;">
+                                       <span class="icon-upload" style="margin-right: 5px;"></span> Select Profile Photo</label>
+
+                                </div>
+
+                                <div class="col-md-4 d-grid" style="margin-top: 20px; margin-bottom: 50px;">
+                                    <input type="submit" class="btn btn-primary" value="Change Photo">
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                
+
+
+								<form action="" class="row form-user-data">
+
+                                    <div class="col-md-12">
+                                        <div class="mb-3 mb-md-0">
+                                            <h3 class="h6" style="color: whitesmoke;">BIO</h3>
+
+                                <input type="text" id="bio" value="<%= user.bio %>" class="form-control" placeholder="write a bio">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <div class="mb-3 mb-md-0">
+                                            <h3 class="h6" style="margin-top: 20px; color: whitesmoke;">Change Company name (optional)</h3>
+
+                                <input type="text" id="companyName" value="<%= user.companyName %>" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="mb-3 mb-md-0">
+                                            <h3 class="h6" style="margin-top: 20px; color: whitesmoke;">Change Website (optional)</h3>
+
+                                <input type="text" id="website" value="<%= user.website %>" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="mb-3 mb-md-0">
+                                            <h3 class="h6" style="margin-top: 20px; color: whitesmoke;">Change Address (optional)</h3>
+
+                                <input type="text" id="address" value="<%= user.address %>" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 d-grid" style="margin-top: 20px;">
+                                        <input type="submit" class="btn btn-primary" value="Save Changes">
+                                    </div>
+
+                                </form>
+								
+							</div>
+							
+						</div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+
+
+
+    
+
+
+
+
+	<div class="section" style="margin-top: -150px; background-color: rgb(32, 32, 32);">
+		<div class="container" style="border-top: 2px solid whitesmoke;">
+			<div class="row g-5">
+
+                <div class="post-meta mb-1">
+                    <h2 class="h2 fw-bold" 
+                style="text-align: center; color: #4dc3ff; margin-top: 30px;">PASSWORD CHANGE</h2>
+
+                    <form action="" class="row form-password">
+                        <div class="col-md-12">
+                            <div class="mb-3 mb-md-0">
+                                <h3 class="h6" style="margin-top: 20px; color: whitesmoke;">Old Password</h3>
+
+                    <input type="password" id="password-current" class="form-control" placeholder="********" minlength="8" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="mb-3 mb-md-0">
+                                <h3 class="h6" style="margin-top: 20px; color: white;">New Password</h3>
+
+                    <input type="password" id="password" class="form-control" placeholder="********" minlength="8" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="mb-3 mb-md-0">
+                                <h3 class="h6" style="margin-top: 20px; color: whitesmoke;">Confirm new Password</h3>
+
+                    <input type="password" id="password-confirm" class="form-control" placeholder="********" minlength="8" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 d-grid" style="margin-top: 20px;">
+                            <input type="submit" class="btn btn-primary" value="Change Password">
+                        </div>
+
+                    </form>
+                </div>
+                
+                <!-- <a href="/" class="btn btn-primary" id="logout-btn" style="background-color: red; margin-top: 100px;">Logout</a> -->
+
+            </div>
+        </div>
+    </div>
+
+
+  
+<%- include('includes/footer') %>   

@@ -1,0 +1,19 @@
+<%- include('includes/stripe-header') %>
+
+
+            <div class="section post-section pt-5" style="background-color: white; text-align: center;">
+                    <div class="container">
+			
+							<img src="images/success.gif" alt="">
+							<h5 class="heading text-center"  style="color: #4dc3ff; margin-bottom: 40px;">Your Payment was successful!</h5>
+					
+                    <h6 style="font-size: 25px;"><strong>Please click on <span style="color: red;">CONTINUE</span> to complete the payment process!</strong></h6>
+
+                  <a href="/account" style="width: 80%;" class="btn btn-primary" id="add-bill" data-post-id='<%= stripePost.id %>'>Continue</a>
+				
+			              </div>
+            </div>
+
+
+<%- include('includes/footer') %>
+

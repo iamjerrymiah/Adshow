@@ -1,0 +1,156 @@
+<% if(user.role === 'user') { %>
+<%- include('includes/dash-header') %>
+
+    <% var imgLoop = userPost.photo %>
+	<% var photoLoop = imgLoop.split('.').pop() %>
+
+	<% var headLoop = userPost.headline %>
+	<% var headlineLoop = headLoop.split('-_-_-_').shift() %>
+
+	
+	<div class="section post-section pt-5">
+		<div class="container">
+			<div class="row justify-content-center">
+
+				<% if(userPost.billboard === false) { %>
+				<div class="col-lg-6">
+					<button class="btn btn-primary" style="width: 100%;" id="stripe-post" data-stripepost-id='<%= userPost.id %>'>Add To Billboard</button>
+				</div>
+				<% }else{ %>
+					<div class="col-lg-6">
+					<button type="submit" class="btn btn-primary" style="width: 100%;" disabled>Already on Billboard</button>
+				</div>
+				<% } %>
+				
+				
+				<div class="post-meta mb-1">
+							<span class="category" style="color: #000; font-weight: bold;"><%= userPost.category %></span> &mdash;
+
+							<span class="date"><%= userPost.createdAt.toLocaleString('en-us', {day:'2-digit', month:'long', year:'numeric'}) %></span>
+							
+						</div>
+                    <div class="thumbnail" style="background-color: #000; text-align: center;">
+						
+						<ul class="admin-list blog-sing">
+
+						</ul>
+                        
+							<% if(photoLoop === 'MP4'|| photoLoop === 'mp4' || photoLoop === 'MP2' || photoLoop === 'mp2' || photoLoop === 'WEBM' || photoLoop === 'webm' || photoLoop === 'AVI' || photoLoop === 'avi' || photoLoop === 'ogg' || photoLoop === 'wmv' || photoLoop === 'MOV' || photoLoop === 'mov') { %>
+								<video src="images/posts/<%= userPost.photo %>" 
+								style="max-width: 100%; height: 500px;" autoplay loop></video>		
+							<% } %>
+
+							<% if(photoLoop === 'jpg' || photoLoop === 'JPG'|| photoLoop === 'PNG' || photoLoop === 'png' || photoLoop === 'JPEG' || photoLoop === 'jpeg' || photoLoop === 'GIF' || photoLoop === 'gif' || photoLoop === 'tiff' || photoLoop === 'psd' || photoLoop === 'PDF' || photoLoop === 'pdf') { %>
+								<img src="images/posts/<%= userPost.photo %>" alt="" 
+								class="img-fluid">
+							<% } %>
+
+                </div>
+				<ul class="admin-list blog-sing" style="background-color: rgb(32, 32, 32); text-align: center;">     
+					<li><span class="icon-heart" aria-hidden="true" style="margin-right: 3px;"></span> <%= userPost.likes.length %> Likes</li>
+					<li><span class="icon-commenting" aria-hidden="true" style="margin-right: 3px;"></span> <%= userPost.reviews.length %> Comments</li>
+
+			<!-- <button onclick="playPause()" class="btn btn-primary" style="color: whitesmoke;">Play/Pause</button>  -->
+
+				</ul>
+					<h5 class="text-center" style="color: black; font-weight: bold;"><%= headlineLoop %></h5>
+					
+					<blockquote>
+						<p>
+							<%= userPost.description %>
+						</p>
+					</blockquote>
+
+				</div>
+
+			</div>
+
+
+
+			<!-- <script> 
+				var myVideo = document.getElementById("video2"); 
+				
+				function playPause() { 
+				  if (myVideo.paused) 
+					myVideo.play(); 
+				  else 
+					myVideo.pause(); 
+				} 
+			</script> -->
+
+	</div>
+	</div>
+		</div>
+	
+
+
+
+		<% var prod = userPost.reviews %>
+
+	<div class="section">
+		<div class="container" style="margin-top: -140px;">
+			<div class="row justify-content-center">			
+			<div class="row">
+				<div class="col-lg-12" style="margin-bottom: -100px;">
+					<h2 class="h4 fw-bold">Comments (<%= prod.length %>)</h2>
+				</div>
+			</div>
+				<!-- /comment-->
+				<div class="comment-section">
+
+					<% for(var i=0; i < prod.length; i++) {%>
+					<div class="comment-grid">
+						<div class="comment-left">
+							<img src="images/users/<%= prod[i].user.photo %>" class="img-fluid" alt="">
+						</div>
+						<div class="comment-right">
+							 
+							<span class="time"><%= prod[i].createdAt.toLocaleString('en-us', {month:'long', year:'numeric'}) %></span>
+							<h5 style="color: #000;"><%= prod[i].user.username %></h5>
+							<p>
+								<%= prod[i].review %>
+							</p>
+							
+						</div>
+					</div>
+					<% } %>
+
+				</div>
+				<!-- //comment-->
+			</div>
+		</div>
+	</div>
+	<% } %>
+
+
+	<% if(user.role === 'admin') { %>
+		<%- include('includes/admin-header') %>
+		
+		<% var imgLoop = userPost.photo %>
+		<% var photoLoop = imgLoop.split('.').pop() %>
+
+		<div class="section" style="margin-top: -40px;">
+			<div class="container" style="text-align: center;">
+				<div class="row g-5">
+					<ul class="admin-list blog-sing" style="background-color: rgb(32, 32, 32);">
+						<% if(photoLoop === 'jpg' || photoLoop === 'JPG'|| photoLoop === 'PNG' || photoLoop === 'png') { %>     
+						<li><img src="images/posts/<%= userPost.photo %>" alt="" style="max-width: 100%; height: 80px;"></li>
+						<% } %>
+
+						<% if(photoLoop === 'MP4'|| photoLoop === 'mp4') { %>
+							<li><video src="images/posts/<%= userPost.photo %>" style="max-width: 100%; height: 80px;" autoplay muted loop></video></li>
+						 <% } %>
+							
+						<li>Posted by <%= userPost.user.email %>(<strong style="color: white;"><%= userPost.user.username %></strong>)</li>
+
+						<li><a href="/admin-billboard" class="btn btn-primary" id="admin-reverse-bill" style="color: white;" data-adminbill-id="<%= userPost.id %>">Remove From Billboard</a></li>
+					</ul>
+					
+					
+				</div>
+			</div>
+		</div>
+		
+		<% } %>
+	
+    <%- include('includes/footer') %>

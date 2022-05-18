@@ -1,0 +1,151 @@
+<% if(user.role === 'user') { %>
+<%- include('includes/dash-header') %>
+
+		 
+	<div class="section post-section pt-5">
+		<div class="container">
+			<div class="row justify-content-center">
+				
+				<div class="col-lg-8">
+					
+					<div class="text-center">
+						<img src="images/users/<%= user.photo %>"  alt="Image" 
+						style="height: 200px; border-radius: 100px;" >
+					</div>
+					
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+	
+		<div class="container" style="background-color: rgb(19, 19, 19); margin-top: -100px;">
+			<div class="row g-5">
+
+
+				<div class="col-lg-4">
+					<div class="post-entry d-block small-post-entry-v">
+						<div class="content">
+                            <div class="text" style="text-align: center; font-size: large;">
+                                <strong style="color: whitesmoke;">User Info</strong>
+                            </div>
+
+                            <div class="text" style="margin-top: 25px;">
+                                <p><span class="icon-user" style="margin-right: 10px;"></span><%= user.username %> </p>
+                                <p><span class="icon-male" style="margin-right: 10px;"></span><%= user.name %></p>
+                                <p><span class="icon-address-card" style="margin-right: 10px;"></span><%= user.companyName %></p>
+                            </div>
+							
+							
+						</div>
+
+
+					</div>
+				</div>
+
+
+
+				<div class="col-lg-4">
+					<div class="post-entry d-block small-post-entry-v">
+						<div class="content">
+                            <div class="text" style="text-align: center; font-size: large;">
+                                <strong style="color: whitesmoke;">Contact</strong>
+                            </div>
+
+                            <div class="text" style="margin-top: 25px;">
+                                <p><span class="icon-envelope-o" style="margin-right: 10px;"></span><%= user.email %></p>
+                                <p><span class="icon-phone" style="margin-right: 10px;"></span><%= user.phoneNumber %></p>
+                                <p><span class="icon-map-marker" style="margin-right: 10px;"></span><%= user.address %></p>
+                               <a href=""><p><span class="icon-globe" style="margin-right: 10px;"></span><%= user.website %></p></a>
+                            </div>
+							
+						
+						</div>
+
+
+					</div>
+				</div>
+
+				<div class="col-lg-4">
+					<div class="post-entry d-block small-post-entry-v">
+						<div class="content">
+                            <div class="text" style="text-align: center; font-size: large;">
+                                <strong style="color: whitesmoke;">Bio</strong>
+                            </div>
+
+                            <div class="text" style="margin-top: 25px;">
+                                <p>
+									<%= user.bio %>
+                                </p>
+                            </div>
+							
+							
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+        
+
+
+	<div class="section">
+		<div class="container" style="text-align: center;">
+			<div class="row g-5">
+				
+
+				<a href="/create-post">
+                    <button class="btn btn-primary" 
+                    style="width: 60%; height: 70px;">Create Your First Post</button>
+                </a>
+
+			</div>
+		</div>
+	</div>
+	
+
+	<% } %>
+
+
+
+
+	<% if(user.role === 'admin') { %>
+		<%- include('includes/admin-header') %>
+		<div class="section" style="background-color: rgb(32, 32, 32);">
+			<div class="container" style="text-align: center;">
+				<div class="row g-5">
+					
+	
+					<a href="/admin-billboard">
+						<button class="btn btn-primary" 
+						style="width: 60%; height: 70px;">Get All Billboard Posts</button>
+					</a>
+	
+					<!-- <a href="">
+						<button class="btn btn-primary" 
+						style="width: 60%; height: 70px;">Get All Incomplete Posts</button>
+					</a> -->
+
+					<a href="/admin-users">
+						<button class="btn btn-primary" 
+						style="width: 60%; height: 70px;">Get All Users</button>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<% } %>
+
+
+<%- include('includes/footer') %>
+
+
+

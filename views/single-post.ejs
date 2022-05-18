@@ -1,0 +1,179 @@
+<%- include('includes/header') %>
+
+    <% var imgLoop = post.photo %>
+	<% var photoLoop = imgLoop.split('.').pop() %>
+
+	<% var headLoop = post.headline %>
+	<% var headlineLoop = headLoop.split('-_-_-_').shift() %>
+
+	
+	<div class="section post-section pt-5">
+		<div class="container">
+			<div class="row justify-content-center">
+				
+				<div class="col-lg-8">
+					
+					<div class="text-center">
+						<img src="images/users/<%= post.user.photo %>" alt="Image" 
+                        style="height: 100px; border-radius: 100px; margin-bottom: 10px;">
+					</div>
+					<span class="d-block text-center" style="color: #000; font-size: medium; font-weight: bold;">@<%= post.user.username %></span>
+					<span class="d-block text-center"><%= post.user.bio %></span>
+                    <span class="d-block text-center"><%= post.user.companyName %> <span style="color: salmon;">(company Name)</span></span>
+                    
+				
+
+					<span class="date d-block text-center small text-uppercase text-black-50 mb-5"></span>
+                </div>
+
+                    <div class="row g-5" 
+                    style="background-color: rgb(32, 32, 32); margin-top: -40px; margin-bottom: 30px;">
+
+                        <div class="col-lg-12">
+                            <div class="post-entry d-block small-post-entry-v">
+                                <div class="content">
+                                    <div class="text" style="text-align: center; font-size: large;">
+                                        <strong style="color: #fff;">Contact</strong>
+                                    </div>
+        
+                                    <div class="text" style="margin-top: 10px;">
+                                        <p><span class="icon-envelope-o" style="margin-right: 20px;"></span><%= post.user.email %></p>
+                                        <p><span class="icon-phone" style="margin-right: 20px;"></span><%= post.user.phoneNumber %></p>
+                                        <p><span class="icon-map-marker" style="margin-right: 20px;"></span><%= post.user.address %></p>
+                                       <a href=""><p><span class="icon-globe" style="margin-right: 20px;"></span><%= post.user.website %></p></a>
+                                    </div>
+                                    
+                                
+                                </div>
+        
+        
+                            </div>
+                        </div>
+        
+                    </div>
+            </div>
+
+
+
+            <div class="section post-section pt-5">
+                    <div class="container">
+						<div class="row justify-content-center">
+						<div class="post-meta mb-1">
+							<span class="category" style="color: black; font-weight: bold;"><%= post.category %></span> &mdash;
+
+							<span class="date"><%= post.createdAt.toLocaleString('en-us', {day:'2-digit', month:'long', year:'numeric'}) %></span>
+							
+						</div>
+                    <div class="thumbnail" style="background-color: #000; text-align: center;">
+						
+						<ul class="admin-list blog-sing">
+
+						</ul>
+                        
+							<% if(photoLoop === 'MP4'|| photoLoop === 'mp4' || photoLoop === 'MP2' || photoLoop === 'mp2' || photoLoop === 'WEBM' || photoLoop === 'webm' || photoLoop === 'AVI' || photoLoop === 'avi' || photoLoop === 'ogg' || photoLoop === 'wmv' || photoLoop === 'MOV' || photoLoop === 'mov') { %>
+								<video src="images/posts/<%= post.photo %>" 
+								style="max-width: 100%; height: 500px;" id="video2" autoplay loop></video>		
+							<% } %>
+
+							<% if(photoLoop === 'jpg' || photoLoop === 'JPG'|| photoLoop === 'PNG' || photoLoop === 'png' || photoLoop === 'JPEG' || photoLoop === 'jpeg' || photoLoop === 'GIF' || photoLoop === 'gif' || photoLoop === 'tiff' || photoLoop === 'psd' || photoLoop === 'PDF' || photoLoop === 'pdf') { %>
+								<img src="images/posts/<%= post.photo %>" alt="" 
+								class="img-fluid">
+								
+							<% } %>
+								
+                </div>
+				<ul class="admin-list blog-sing" style="background-color: rgb(32, 32, 32); text-align: center;">     
+					<li><button class="btn btn-primary" id="like-btn" data-post-id='<%= post.id %>'>
+						<span class="icon-heart-o" aria-hidden="true"></span> Like</button></li>
+
+					<li><span class="icon-heart" aria-hidden="true" style="margin-right: 3px;"></span> <%= post.likes.length %> Likes</li>
+					<li><span class="icon-commenting" aria-hidden="true" style="margin-right: 3px;"></span> <%= post.reviews.length %> Comments</li>
+
+				</ul>
+
+					<h5 class="text-center" style="color: black; font-weight: bold;"><%= headlineLoop %></h5>
+					
+					<blockquote>
+						<p>
+							<%= post.description %>
+						</p>
+					</blockquote>
+
+				</div>
+
+			</div>
+
+
+
+			
+			
+	
+
+
+		<div class="container" style="margin-top: 40px;">
+			<div class="row">
+				<div class="col-lg-12">
+					<h2 class="h4 fw-bold">Write a comment</h2>
+					
+				</div>
+			</div>
+
+			<form action="" class="row review-form"  data-post-id='<%= post.id %>'>
+				<div class="col-md-6">
+					<div class="mb-3 mb-md-0">
+						<input type="text" id="review-input" class="form-control" placeholder="">
+					</div>
+				</div>
+				<div class="col-md-4 d-grid">
+					<input type="submit" class="btn btn-primary" value="Add Comment">
+				</div>
+			</form>
+		</div>
+
+	</div>
+	</div>
+		</div>
+	
+
+
+
+		<% var prod = post.reviews %>
+
+	<div class="section">
+		<div class="container" style="margin-top: -230px;">
+			<div class="row justify-content-center">			
+			<div class="row">
+				<div class="col-lg-12" style="margin-bottom: -100px;">
+					<h2 class="h4 fw-bold">Comments (<%= prod.length %>)</h2>
+				</div>
+			</div>
+				<!-- /comment-->
+				<div class="comment-section">
+
+					<% for(var i=0; i < prod.length; i++) {%>
+					<div class="comment-grid">
+						<div class="comment-left">
+							<img src="images/users/<%= prod[i].user.photo %>" class="img-fluid" alt="">
+						</div>
+						<div class="comment-right">
+							 
+							<span class="time"><%= prod[i].createdAt.toLocaleString('en-us', {day:'2-digit', month:'long', year:'numeric'}) %></span>
+							<h5 style="color: #000;">@<%= prod[i].user.username %></h5>
+							<p>
+								<%= prod[i].review %>
+							</p>
+							
+						</div>
+					</div>
+					<% } %>
+
+				</div>
+				<!-- //comment-->
+			</div>
+		</div>
+	</div>
+
+
+
+	
+    <%- include('includes/footer') %>

@@ -1,0 +1,68 @@
+<%- include('includes/img-vid-header') %>
+
+
+    <div class="section post-section pt-5" style="background-color: rgb(32, 32, 32);">
+		<div class="container">
+			<div class="row g-5">
+                
+                <div class="col-lg-12">
+					<div class="post-entry d-block small-post-entry-v">
+						<div class="content">
+
+                            <div class="post-meta mb-1">
+
+                                <h3 class="h2 fw-bold"
+                                style="text-align: center; color: #4dc3ff;">SELECT A VIDEO OR IMAGE</h3>
+                                <div class="row justify-content-center">
+
+                                <blockquote style="color: salmon;">
+                                    <p>
+                                      Select<strong> ONE IMAGE/VIDEO</strong> to complete your AD upload.
+                                    </p>
+                                    <p>
+                                        Please make sure we mind the content of what we post. Any AD post that is found inappropriate 
+                                       may result your account to be <strong>BANNED.</strong>
+                                    </p>
+                                    <p>
+                                        Post a video with a file format of <strong>MP4</strong>, image with a file format of either <strong>JPEG/PNG.</strong>
+                                    </p>
+                                    <p>
+                                        A <strong>smaller and more precise </strong> video is better than a lengthy one! 
+                                    </p>
+                                    
+                                </blockquote>
+                                </div>
+
+                                <form action="" class="row update-post-form" data-post-id="<%= updatedPost[0].id %>">
+                                    <div class="col-md-10"  style="text-align: center;">
+                                        <div>
+                                            <img src="images/cloud-upload.gif" alt="" style="width: 80%; height: 300px;">
+
+                                    <input type="file" id='photo' name='photo' class="inputfile" data-multiple-caption="{count} files selected" multiple required>
+                                    
+                                    <label for="photo" style="width: 80%; text-align: center;">
+                                       <span class="icon-upload" style="margin-right: 5px;"></span> Select Video/Image</label>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-10 d-grid" style="margin-top: 32px;">
+                                        
+                                        <input type="submit" class="btn btn-primary" value="Post AD">
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+
+   
+<%- include('includes/footer') %>   

@@ -1,0 +1,180 @@
+<%- include('includes/dash-header') %>
+
+
+
+		 
+	<div class="section post-section pt-5">
+		<div class="container">
+			<div class="row justify-content-center">
+				
+				<div class="col-lg-8">
+					
+					<div class="text-center">
+						<img src="images/users/<%= user.photo %>"  alt="Image" 
+						style="height: 200px; border-radius: 100px;" >
+					</div>
+					
+					
+                </div>
+				<div class="col-lg-8" style="text-align: center; margin-top: 10px;">
+					<a href="/create-post"> 
+						<button class="btn btn-primary" style="width: 60%;"> Create Post</button>
+					</a>
+				</div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+	<!-- rgb(19, 19, 19) -->
+	
+		<div class="container" style="background-color: rgb(32, 32, 32); margin-top: -100px;">   
+			<div class="row g-5">
+
+
+				<div class="col-lg-4">
+					<div class="post-entry d-block small-post-entry-v">
+						<div class="content">
+                            <div class="text" style="text-align: center; font-size: large;">
+                                <strong style="color: whitesmoke;">User Info</strong>
+                            </div>
+
+                            <div class="text" style="margin-top: 25px;">
+                                <p><span class="icon-user" style="margin-right: 10px;"></span>@<%= user.username %> </p>
+                                <p><span class="icon-male" style="margin-right: 10px;"></span><%= user.name %></p>
+                                <p><span class="icon-address-card" style="margin-right: 10px;"></span><%= user.companyName %></p>
+                            </div>
+							
+							
+						</div>
+
+
+					</div>
+				</div>
+
+
+
+				<div class="col-lg-4">
+					<div class="post-entry d-block small-post-entry-v">
+						<div class="content">
+                            <div class="text" style="text-align: center; font-size: large;">
+                                <strong style="color: whitesmoke;">Contact</strong>
+                            </div>
+
+                            <div class="text" style="margin-top: 25px;">
+                                <p><span class="icon-envelope-o" style="margin-right: 10px;"></span><%= user.email %></p>
+                                <p><span class="icon-phone" style="margin-right: 10px;"></span><%= user.phoneNumber %></p>
+                                <p><span class="icon-map-marker" style="margin-right: 10px;"></span><%= user.address %></p>
+                               <a href=""><p><span class="icon-globe" style="margin-right: 10px;"></span><%= user.website %></p></a>
+                            </div>
+							
+						
+						</div>
+
+
+					</div>
+				</div>
+
+				<div class="col-lg-4">
+					<div class="post-entry d-block small-post-entry-v">
+						<div class="content">
+                            <div class="text" style="text-align: center; font-size: large;">
+                                <strong style="color: whitesmoke;">Bio</strong>
+                            </div>
+
+                            <div class="text" style="margin-top: 25px;">
+                                <p>
+									<%= user.bio %>
+                                </p>
+                            </div>
+							
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	
+
+		
+        
+
+
+	<div class="section">
+		<div class="container">
+			<div class="row g-5">
+				
+
+				<% userPost.forEach(function(post) { %> 
+					<% var imgLoop = post.photo %>
+				<% var photoLoop = imgLoop.split('.').pop() %>
+
+				<% var headLoop = post.headline %>
+			<% var headlineLoop = headLoop.split('-_-_-_').shift() %>
+
+			<% if(post.photo !== 'vitualpost.jpg') { %>
+				<div class="col-lg-4" style="margin-bottom: -35px;">
+					<div class="post-entry d-block small-post-entry-v">
+						<div class="content">
+							
+							<div class="post-meta mb-1">
+								<a href="/<%= post.hash %>" class="category"><%= post.category %></a> &mdash;
+								<span class="date"><%= post.createdAt.toLocaleString('en-us', {day:'2-digit', month:'long', year:'numeric'}) %></span>
+								
+							</div>
+							<h6><a href="/<%= post.hash %>"><%= headlineLoop %></a></h6>
+							
+						</div>
+						
+							
+
+						<div class="thumbnail" style="background-color: #000; text-align: center;">
+							<% if(photoLoop === 'jpg' || photoLoop === 'JPG'|| photoLoop === 'PNG' || photoLoop === 'png' || photoLoop === 'JPEG' || photoLoop === 'jpeg' || photoLoop === 'GIF' || photoLoop === 'gif' || photoLoop === 'tiff' || photoLoop === 'psd' || photoLoop === 'PDF' || photoLoop === 'pdf') { %>
+									<a href="/<%= post.hash %>">
+									<img src="images/posts/<%= post.photo %>" alt="" 
+									style="max-width: 100%; height: 300px;">
+								</a>
+									<% } %>
+
+							
+								<% if(photoLoop === 'MP4'|| photoLoop === 'mp4' || photoLoop === 'MP2' || photoLoop === 'mp2' || photoLoop === 'WEBM' || photoLoop === 'webm' || photoLoop === 'AVI' || photoLoop === 'avi' || photoLoop === 'ogg' || photoLoop === 'wmv' || photoLoop === 'MOV' || photoLoop === 'mov') { %>
+								<a href="/<%= post.hash %>">
+								<video src="images/posts/<%= post.photo %>" 
+									style="max-width: 100%; height: 300px;" autoplay muted></video>
+								</a>		
+							<% } %>
+							
+
+							<ul class="admin-list blog-sing" style="background-color: rgb(32, 32, 32);">     
+								<li><p><span class="icon-heart-o" aria-hidden="true" style="margin-right: 3px;"></span><%= post.likes.length %> Likes</p></li>
+								<li><p><span class="icon-commenting-o" aria-hidden="true" style="margin-right: 3px;"></span><%= post.reviews.length %> Comments</p></li>
+
+								<% if(post.billboard === false) { %>
+								<li><a href="/<%= post.hash %>"><button type="submit" class="btn btn-primary">Add Billboard</button></a></li>
+								<% }else{ %>
+								<li><button type="submit" class="btn btn-primary" disabled>Already on Billboard</button></li>
+								<% } %> 		
+							</ul>
+						</div>
+
+					</div>
+				</div>
+				<% } %>
+				<% }) %>
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+<%- include('includes/footer') %>

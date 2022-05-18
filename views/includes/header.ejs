@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+
+	<link rel="stylesheet" href="fonts/icomoon/style.css">
+	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+	<link rel="stylesheet" href="css/tiny-slider.css">
+	<link rel="stylesheet" href="css/glightbox.min.css">
+	<link rel="stylesheet" href="css/aos.css">
+	<link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="images/Adshow logo-1 - Copy.jpg"> 
+
+	<title><%= title %></title>
+</head>
+<body style="background-color: whitesmoke;">
+
+	<div class="site-mobile-menu site-navbar-target">
+		<div class="site-mobile-menu-header">
+			<div class="site-mobile-menu-close">
+				<span class="icofont-close js-menu-toggle"></span>
+			</div>
+		</div>
+		<div class="site-mobile-menu-body"></div>
+	</div>
+
+	<nav class="site-nav">
+		<div class="container">
+			<div class="site-navigation">
+
+				<div class="row">
+					<div class="col-md-6 text-center order-1 order-md-2 mb-3 mb-md-0">
+						<a href="/"> <img style="height: 50px;" src="images/Adshow logo-1.png" alt=""></a>
+					</div>
+					
+					<div class="col-md-3 order-3 order-md-1">
+
+						<!-- <form action="" class="search-form">
+							<span class="icon-search2"></span>
+							<input type="search" class="form-control" id="search-input" placeholder="Search...">
+						</form> -->
+
+					</div>
+					
+					<div class="col-md-3 text-end order-2 order-md-3 mb-3 mb-md-0">
+						<div class="d-flex">
+							<ul class="list-unstyled social me-auto">
+								<li><a href="/account"><img src="images/users/<%= user.photo %>" 
+									alt="Image" 
+									style="height: 40px; border-radius: 100px; margin-right: 5px;"> 
+									<span style="font-size: medium; font-weight: bold; color: #000;">@<%= user.username %></span>
+								</a></li>
+							</ul>
+
+							<a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block" data-toggle="collapse" data-target="#main-navbar">
+								<span></span>
+							</a>
+						</div>
+
+					</div>
+				</div>
+
+				<ul class="js-clone-nav d-none d-lg-inline-none text-start site-menu float-end">
+					<li class="active"><a href="/">Home</a></li>
+					<li><a href="/billboard">Weekly Billboard</a></li>
+					<li class="has-children">
+						<a href="">Categories</a>
+						<ul class="dropdown">
+							<li><a href="/arts">Arts</a></li>
+							<li><a href="/architecture-construction">Architecture and Construction</a></li>
+							<li><a href="/business">Business</a></li>
+							<li><a href="/education-training">Education and Training</a></li>
+							<li><a href="/entertainment">Entertainment</a></li>
+							<li><a href="/engineering">Engineering</a></li>
+							<li><a href="/health-science">Health Science</a></li>
+							<li><a href="/information-technology">Information Technology</a></li>
+							<li><a href="/manufacturing">Manufacturing</a></li>
+							<li><a href="/marketing">Marketing</a></li>
+							<li><a href="/software-development">Software Development</a></li>
+							<li><a href="/others">Others</a></li>
+						</ul>
+					</li>
+
+				</ul>
+
+			</div>
+		</div>
+	</nav>
