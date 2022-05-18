@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { showAlert } from './alert';
 
-export const createProd = async (headline, description, category) => {
+export const createProd = async (headline, category) => {
     try {
         const res = await axios({
             method: 'POST',
             url: '/api/v1/posts',
             data: {
               headline,
-              description,
               category 
             }
             

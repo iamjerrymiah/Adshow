@@ -12,6 +12,6 @@ export const liking = async ( postId ) => {
         showAlert('error', 'Something went wrong!');
         window.setTimeout(() => {
         location.reload();
-        }, 500);
+        }, 200);
     }
 };

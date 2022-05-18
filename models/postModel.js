@@ -8,11 +8,6 @@ const postSchema = new mongoose.Schema({
         trim: true,
         required: [true, 'A post must have a headline']
     },
-    description:{
-        type: String,
-        trim: true,
-        required: [true, 'A post must have a description'] 
-    },
     category:{
         type: String,
         trim: true,
@@ -52,6 +47,14 @@ const postSchema = new mongoose.Schema({
     toJSON: { virtuals:true },
     toObject: { virtuals:true }
 });
+
+
+// ,
+//     description:{
+//         type: String,
+//         trim: true,
+//         required: [true, 'A post must have a description'] 
+//     }
 
 
 postSchema.index({ slug: 1 });

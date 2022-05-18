@@ -20,7 +20,6 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) =>{
         line_items: [
             {
               name: post.headline.split('-_-_-_').shift(),
-              description: post.description,
               images: [`${req.protocol}://${req.get('host')}/images/posts/${post.photo}`], 
               amount: 10 * 100,
               currency: 'usd',

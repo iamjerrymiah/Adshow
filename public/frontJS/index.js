@@ -66,10 +66,9 @@ if(createPostForm)
 createPostForm.addEventListener('submit', e => {
   e.preventDefault();
   const headline = document.getElementById('postHeadline').value;
-  const description = document.getElementById('postDescript').value;
   const category = document.getElementById('postCategory').value;
 
-  createProd(headline, description, category);
+  createProd(headline, category);
 });
 
 

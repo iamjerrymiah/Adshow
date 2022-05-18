@@ -72,7 +72,7 @@
                         
 							<% if(photoLoop === 'MP4'|| photoLoop === 'mp4' || photoLoop === 'MP2' || photoLoop === 'mp2' || photoLoop === 'WEBM' || photoLoop === 'webm' || photoLoop === 'AVI' || photoLoop === 'avi' || photoLoop === 'ogg' || photoLoop === 'wmv' || photoLoop === 'MOV' || photoLoop === 'mov') { %>
 								<video src="images/posts/<%= post.photo %>" 
-								style="max-width: 100%; height: 500px;" id="video2" autoplay loop></video>		
+								style="max-width: 100%; height: 300px;" id="video2" autoplay loop></video>		
 							<% } %>
 
 							<% if(photoLoop === 'jpg' || photoLoop === 'JPG'|| photoLoop === 'PNG' || photoLoop === 'png' || photoLoop === 'JPEG' || photoLoop === 'jpeg' || photoLoop === 'GIF' || photoLoop === 'gif' || photoLoop === 'tiff' || photoLoop === 'psd' || photoLoop === 'PDF' || photoLoop === 'pdf') { %>
@@ -83,21 +83,18 @@
 								
                 </div>
 				<ul class="admin-list blog-sing" style="background-color: rgb(32, 32, 32); text-align: center;">     
-					<li><button class="btn btn-primary" id="like-btn" data-post-id='<%= post.id %>'>
-						<span class="icon-heart-o" aria-hidden="true"></span> Like</button></li>
-
 					<li><span class="icon-heart" aria-hidden="true" style="margin-right: 3px;"></span> <%= post.likes.length %> Likes</li>
 					<li><span class="icon-commenting" aria-hidden="true" style="margin-right: 3px;"></span> <%= post.reviews.length %> Comments</li>
+					<li>
+						<button class="btn btn-primary" id="like-btn" data-post-id='<%= post.id %>'>
+						<span class="icon-heart-o" aria-hidden="true"></span> Like</button>
+					</li>
 
 				</ul>
 
 					<h5 class="text-center" style="color: black; font-weight: bold;"><%= headlineLoop %></h5>
 					
-					<blockquote>
-						<p>
-							<%= post.description %>
-						</p>
-					</blockquote>
+					
 
 				</div>
 

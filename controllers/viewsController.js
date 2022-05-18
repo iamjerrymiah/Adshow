@@ -14,7 +14,7 @@ exports.getOverviewPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -45,7 +45,7 @@ exports.getOnePost = catchAsync(async (req, res, next) =>{
     // 2) Build template
     // 3) Render template using data from 1)
     res.status(200).render('single-post', {
-        title: `${post.headline}`,
+        title: `${post.headline.split('-_-_-_').shift()}`,
         post
     });
 });
@@ -69,7 +69,7 @@ exports.getAccountPost = catchAsync(async (req, res, next) => {
      // 2) Build template
     // 3) Render template using data from 1)
     res.status(200).render('dash-single', {
-        title: `${userPost.headline}`,
+        title: `${userPost.headline.split('-_-_-_').shift()}`,
         userPost
     });
 });
@@ -115,7 +115,7 @@ exports.getStripePost = catchAsync(async (req, res, next) => {
      // 2) Build template
     // 3) Render template using data from 1)
     res.status(200).render('stripe-Invoice', {
-        title: `${stripePost.headline}`,
+        title: `${stripePost.headline.split('-_-_-_').shift()}`,
         stripePost
     });
 });
@@ -140,7 +140,7 @@ exports.postSearchPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -153,7 +153,7 @@ exports.postSearchPage = catchAsync(async (req, res, next) =>{
 
 
 exports.getBillboard = catchAsync(async(req, res, next) => {
-    const bills = await Post.aggregate([{ $sample: { size: 20 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 15 } }]);
 
     res.status(200).render('billboard', {
         title: 'Trending Billboard',
@@ -254,7 +254,7 @@ exports.getArtsPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -277,7 +277,7 @@ exports.getArchConstruct = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -300,7 +300,7 @@ exports.getBusinessPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -323,7 +323,7 @@ exports.getEduTrain = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -346,7 +346,7 @@ exports.getEntertainment = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -369,7 +369,7 @@ exports.getEngineering = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -392,7 +392,7 @@ exports.getHealthSci = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -415,7 +415,7 @@ exports.getInfoTech = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -438,7 +438,7 @@ exports.getManufacturingPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -461,7 +461,7 @@ exports.getMarketingPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -485,7 +485,7 @@ exports.getSoftDev = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -508,7 +508,7 @@ exports.getOthersPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 10 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
 
     //(2 Build template
     //(3 Render template
