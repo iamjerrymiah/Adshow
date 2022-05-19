@@ -36,8 +36,9 @@
 						</ul>
                         
 							<% if(photoLoop === 'MP4'|| photoLoop === 'mp4' || photoLoop === 'MP2' || photoLoop === 'mp2' || photoLoop === 'WEBM' || photoLoop === 'webm' || photoLoop === 'AVI' || photoLoop === 'avi' || photoLoop === 'ogg' || photoLoop === 'wmv' || photoLoop === 'MOV' || photoLoop === 'mov') { %>
-								<video src="images/posts/<%= userPost.photo %>" 
-								style="max-width: 100%; height: 500px;" autoplay loop></video>		
+								<video id="player" playsinline controls data-poster="/path/to/poster.jpg" style="max-width: 100%; height: 300px;">
+									<source src="images/posts/<%= userPost.photo %>" />
+								  </video>		
 							<% } %>
 
 							<% if(photoLoop === 'jpg' || photoLoop === 'JPG'|| photoLoop === 'PNG' || photoLoop === 'png' || photoLoop === 'JPEG' || photoLoop === 'jpeg' || photoLoop === 'GIF' || photoLoop === 'gif' || photoLoop === 'tiff' || photoLoop === 'psd' || photoLoop === 'PDF' || photoLoop === 'pdf') { %>

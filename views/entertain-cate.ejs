@@ -126,8 +126,9 @@
 							
 							<% if(photoLoop === 'MP4'|| photoLoop === 'mp4' || photoLoop === 'MP2' || photoLoop === 'mp2' || photoLoop === 'WEBM' || photoLoop === 'webm' || photoLoop === 'AVI' || photoLoop === 'avi' || photoLoop === 'ogg' || photoLoop === 'wmv' || photoLoop === 'MOV' || photoLoop === 'mov') { %>
 							<a href="/<%= post.slug %>">
-								<video src="images/posts/<%= post.photo %>" 
-								style="max-width: 100%; height: 500px;" autoplay muted></video>		
+								<video id="player" playsinline controls data-poster="/path/to/poster.jpg" style="max-width: 100%; height: 300px;">
+									<source src="images/posts/<%= post.photo %>" />
+								  </video>		
 							</a>
 							<% } %>
 

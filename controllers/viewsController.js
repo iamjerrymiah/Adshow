@@ -14,7 +14,7 @@ exports.getOverviewPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -140,7 +140,7 @@ exports.postSearchPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -254,7 +254,7 @@ exports.getArtsPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -277,7 +277,7 @@ exports.getArchConstruct = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -300,7 +300,7 @@ exports.getBusinessPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -323,7 +323,7 @@ exports.getEduTrain = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -346,7 +346,7 @@ exports.getEntertainment = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -369,7 +369,7 @@ exports.getEngineering = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -392,7 +392,7 @@ exports.getHealthSci = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -415,7 +415,7 @@ exports.getInfoTech = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -438,7 +438,7 @@ exports.getManufacturingPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -461,7 +461,7 @@ exports.getMarketingPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -485,7 +485,7 @@ exports.getSoftDev = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template
@@ -508,7 +508,7 @@ exports.getOthersPage = catchAsync(async (req, res, next) =>{
         }
     ]);
 
-    const bills = await Post.aggregate([{ $sample: { size: 7 } }]);
+    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
 
     //(2 Build template
     //(3 Render template

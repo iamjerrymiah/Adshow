@@ -25,5 +25,22 @@ export const hideAlert = () => {
     document.querySelector('.form-signup').insertAdjacentHTML('afterbegin', markup);
     window.setTimeout(hideAlert, time * 1000);
   };
+  
+
+  export const createAlert = (type, msg, time = 7) => { 
+    hideAlert();
+    const markup = `<div class="alert alert-${type}" style="text-align: center">${msg}</div>`; 
+    document.querySelector('.form-create').insertAdjacentHTML('afterbegin', markup);
+    window.setTimeout(hideAlert, time * 1000);
+  };
+
+  export const updatePostAlert = (type, msg, time = 7) => { 
+    hideAlert();
+    const markup = `<div class="alert alert-${type}" style="text-align: center">${msg}</div>`; 
+    document.querySelector('.update-post-form').insertAdjacentHTML('afterbegin', markup);
+    window.setTimeout(hideAlert, time * 1000);
+  };
+
+
 
   

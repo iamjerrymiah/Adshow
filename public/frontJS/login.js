@@ -20,7 +20,7 @@ export const login = async (email, password) => {
         }, 1000);
       }
     } catch (err) {
-      logAlert('error', err.response.data.message);
+      logAlert('error', 'Incorrect Email or Password!');
     }
   };
 

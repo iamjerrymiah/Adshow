@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { showAlert } from './alert';
+import { updatePostAlert } from './alert';
 
 export const updatePost = async (data, postId) => {
     try {
@@ -10,13 +11,13 @@ export const updatePost = async (data, postId) => {
         });
 
         if (res.data.status === 'success') {
-            showAlert('success', 'Your Post was successful!');
+            updatePostAlert('success', 'Post successfully uploaded!');
             window.setTimeout(() => {
             location.assign('/account');
             }, 1000); 
           }
 
     } catch (err) {
-        showAlert('error', err.response.data.message);
+        updatePostAlert('error', err.response.data.message);
     };
 };
