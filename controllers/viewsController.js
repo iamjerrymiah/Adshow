@@ -158,7 +158,10 @@ exports.getSearchPage = catchAsync(async (req, res, next) =>{
 
 
 exports.getBillboard = catchAsync(async(req, res, next) => {
-    const bills = await Post.aggregate([{ $sample: { size: 15 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 15 } }
+    ]);
 
     res.status(200).render('billboard', {
         title: 'Trending Billboard',
