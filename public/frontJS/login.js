@@ -33,7 +33,7 @@ export const logout = async () => {
       });
       if (res.data.status === 'success'){
         window.setTimeout(()=> {
-          location.assign('/');
+          location.assign('/login');
         }, 1000);
       }
     } catch (err) {

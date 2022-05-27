@@ -73,7 +73,6 @@ const filterObj = (obj, ...allowedFields) => {
 };
 
 
-
 exports.updatePostInfo = catchAsync(async (req, res, next) => {
   // 1) Filtered out unwanted fields names that are not allowed to be updated
   const filteredBody = filterObj(req.body);
@@ -116,12 +115,46 @@ exports.reserveBillBoard = catchAsync(async (req, res, next) =>{
 });
 
 
-//Search controller
+//API for lazy loading
+exports.lazyLoadPost = catchAsync(async (req, res, next) =>{
+  let page = parseInt(req.params.page);
+  let postAmount = 1;
+
+  const posts = await Post.find()
+    .sort({_id: -1})
+    .populate([
+        {
+            path: 'reviews'
+        },
+        {
+            path: 'likes'
+        }
+    ]).skip(page).limit(postAmount)
+
+    res.status(200).json({
+      posts
+    })
+});
+
+
+exports.getPostLength = catchAsync(async (req, res, next) => {
+  const post = await Post.find();
+
+  res.status(200).json({
+    length: post.length
+  })
+});
+
+
+
+
+//Search Functionality
 exports.postSearch = catchAsync(async (req, res, next) =>{
   const searched = await Post.find(
       {
       '$or': [
-        {headline: {$regex: req.params.key}}
+        {headline: {$regex: req.params.key}},
+        {category: {$regex: req.params.key}}
       ]
     })
 

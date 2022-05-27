@@ -82,10 +82,8 @@ const Email = require('./../utils/email');
 
 
   exports.logout = (req, res) => {
-    res.cookie('jwt', 'loggedout', {
-      expires: new Date(Date.now() + 10 * 1000),
-      httpOnly: true
-    });
+    res.cookie('jwt', '', { maxAge: 1 });
+
     res.status(200).json({ status: 'success' });
   };
   

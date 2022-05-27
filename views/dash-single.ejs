@@ -26,7 +26,7 @@
 				<div class="post-meta mb-1">
 							<span class="category" style="color: #000; font-weight: bold;"><%= userPost.category %></span> &mdash;
 
-							<span class="date"><%= userPost.createdAt.toLocaleString('en-us', {day:'2-digit', month:'long', year:'numeric'}) %></span>
+							<span class="date" style="font-size: smaller;"><%= userPost.createdAt.toLocaleString('en-us', {day:'2-digit', month:'long', year:'numeric'}) %></span>
 							
 						</div>
                     <div class="thumbnail" style="background-color: #000; text-align: center;">
@@ -96,20 +96,20 @@
 				<div class="comment-section">
 
 					<% for(var i=0; i < prod.length; i++) {%>
-					<div class="comment-grid">
-						<div class="comment-left">
-							<img src="images/users/<%= prod[i].user.photo %>" class="img-fluid" alt="">
+						<div class="comment-grid" style="margin-top: -10px;">
+							<div class="comment-left">
+								<img src="images/users/<%= prod[i].user.photo %>" 
+								style="height: 50px; max-width: 100%;" alt="">
+							</div>
+							<div class="comment-right">
+								<span style="color: goldenrod;">@<%= prod[i].user.username %></span> &mdash;
+								<span class="time" style="font-size: smaller;"><%= prod[i].createdAt.toLocaleString('en-us', {day:'2-digit', month:'long', year:'numeric'}) %></span>
+								<p style="color: #000;">
+									<%= prod[i].review %>
+								</p>
+								
+							</div>
 						</div>
-						<div class="comment-right">
-							 
-							<span class="time"><%= prod[i].createdAt.toLocaleString('en-us', {month:'long', year:'numeric'}) %></span>
-							<h5 style="color: #000;"><%= prod[i].user.username %></h5>
-							<p>
-								<%= prod[i].review %>
-							</p>
-							
-						</div>
-					</div>
 					<% } %>
 
 				</div>

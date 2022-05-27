@@ -18,7 +18,8 @@ router.get('/about', authController.protect, viewsController.getAboutPage);
 router.get('/contact', authController.protect, viewsController.getContactPage);
 router.get('/admin-billboard', authController.protect, authController.restrictTo('admin'), viewsController.adminGetBillboardPosts);
 router.get('/admin-users', authController.protect, authController.restrictTo('admin'), viewsController.adminGetAllUsers);
-router.get('/search/:key', authController.protect, viewsController.postSearchPage);
+router.get('/search', authController.protect, viewsController.getSearchPage);
+
 
 
 router.get('/arts', authController.protect, viewsController.getArtsPage);

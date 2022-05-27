@@ -34,6 +34,7 @@ export const hideAlert = () => {
     window.setTimeout(hideAlert, time * 1000);
   };
 
+
   export const updatePostAlert = (type, msg, time = 7) => { 
     hideAlert();
     const markup = `<div class="alert alert-${type}" style="text-align: center">${msg}</div>`; 
@@ -41,6 +42,13 @@ export const hideAlert = () => {
     window.setTimeout(hideAlert, time * 1000);
   };
 
+  
+  export const reviewAlert = (type, msg, time = 7) => { 
+    hideAlert();
+    const markup = `<div class="alert alert-${type}" style="text-align: center">${msg}</div>`; 
+    document.querySelector('.review-form').insertAdjacentHTML('afterbegin', markup);
+    window.setTimeout(hideAlert, time * 1000);
+  };
 
 
   

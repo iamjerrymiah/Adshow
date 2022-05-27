@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { showAlert } from './alert';
+import { reviewAlert } from './alert';
 
 export const reviewProd = async (postId, review) => {
     try {
@@ -12,15 +13,12 @@ export const reviewProd = async (postId, review) => {
         });
 
         if (res.data.status === 'success') {
-            showAlert('success', 'Review uploaded!');
-            window.setTimeout(() => {
-            location.reload();
-            }, 1000); 
+            reviewAlert('success', 'Review uploaded!'); 
           }
     } catch (err) {
-        showAlert('error', 'Something went wrong!');
+        reviewAlert('error', 'Something Went Wrong! Try again later.');
         window.setTimeout(() => {
         location.reload();
-        }, 500);
+        }, 700);
     }
 };

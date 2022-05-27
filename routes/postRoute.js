@@ -20,6 +20,8 @@ router
     postController.createPost);
 
 router.get('/search/:key', authController.protect, postController.postSearch);
+router.get('/lazyLoad/:page', authController.protect, postController.lazyLoadPost);
+router.get('/post-length', authController.protect, postController.getPostLength);
 
 router.post('/checkout-session/:postId', authController.protect, postController.getCheckoutSession);
 

@@ -5,6 +5,8 @@ const User = require('../models/userModel');
 
 exports.getOverviewPage = catchAsync(async (req, res, next) =>{
     //(1 get all posts from post collection
+    let postAmount = 10;
+
     const posts = await Post.find().sort({_id: -1}).populate([
         {
             path: 'reviews'
@@ -12,9 +14,13 @@ exports.getOverviewPage = catchAsync(async (req, res, next) =>{
         {
             path: 'likes'
         }
-    ]);
+    ]).limit(postAmount);
+   
 
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
+    ]);
 
     //(2 Build template
     //(3 Render template
@@ -103,8 +109,6 @@ exports.getAccount = catchAsync(async (req, res, next)=> {
 });
 
 
-
-
 exports.getStripePost = catchAsync(async (req, res, next) => {
     const stripePost = await Post.findOne({ _id: req.params.id });
  
@@ -121,15 +125,13 @@ exports.getStripePost = catchAsync(async (req, res, next) => {
 });
 
 
-
-
-
-
-//Search viewing function
-exports.postSearchPage = catchAsync(async (req, res, next) =>{
-    const posts = await Post.find({
+exports.getSearchPage = catchAsync(async (req, res, next) =>{
+    let postAmount = 20;
+    const posts = await Post.find(
+        {
         '$or': [
-          {headline: {$regex: req.params.key}}
+          {headline: {$regex: req.query.key}},
+          {category: {$regex: req.query.key}}
         ]
       }).sort({_id: -1}).populate([
         {
@@ -138,18 +140,21 @@ exports.postSearchPage = catchAsync(async (req, res, next) =>{
         {
             path: 'likes'
         }
+    ]).limit(postAmount);
+
+
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
     ]);
-
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
-
-    //(2 Build template
-    //(3 Render template
-    res.status(200).render('overview', { 
-        title: 'ADshow || Advertise your dream',
+  
+      res.status(200).render('search-page',{
+        title: 'Searched Results',
         posts,
         bills
-    });
-});
+      });
+  });
+
 
 
 exports.getBillboard = catchAsync(async(req, res, next) => {
@@ -219,8 +224,6 @@ exports.getCreatePostPage = (req, res, next)=> {
     })
 };
 
-
-
 exports.getCreateVidImgPage = catchAsync(async (req, res, next)=> {
     //Get posts by a specific user
     const updatedPost = await Post.find({ user: req.user.id }).sort({_id: -1});
@@ -235,26 +238,24 @@ exports.getCreateVidImgPage = catchAsync(async (req, res, next)=> {
 
 
 
-
-
-
-
-
-
-
 //category rendering
 exports.getArtsPage = catchAsync(async (req, res, next) =>{
     //(1 get all posts from post collection
-    const posts = await Post.find().sort({_id: -1}).populate([
+    let postAmount = 15;
+
+    const posts = await Post.find({category: "Art"}).sort({_id: -1}).populate([
         {
             path: 'reviews'
         },
         {
             path: 'likes'
         }
-    ]);
+    ]).limit(postAmount);
 
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
+    ]);
 
     //(2 Build template
     //(3 Render template
@@ -267,17 +268,22 @@ exports.getArtsPage = catchAsync(async (req, res, next) =>{
 
 
 exports.getArchConstruct = catchAsync(async (req, res, next) =>{
+    let postAmount = 15;
+
     //(1 get all posts from post collection
-    const posts = await Post.find().sort({_id: -1}).populate([
+    const posts = await Post.find({category: "Architecture and Construction"}).sort({_id: -1}).populate([
         {
             path: 'reviews'
         },
         {
             path: 'likes'
         }
-    ]);
+    ]).limit(postAmount);
 
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
+    ]);
 
     //(2 Build template
     //(3 Render template
@@ -290,17 +296,22 @@ exports.getArchConstruct = catchAsync(async (req, res, next) =>{
 
 
 exports.getBusinessPage = catchAsync(async (req, res, next) =>{
+    let postAmount = 20;
+
     //(1 get all posts from post collection
-    const posts = await Post.find().sort({_id: -1}).populate([
+    const posts = await Post.find({category: "Business"}).sort({_id: -1}).populate([
         {
             path: 'reviews'
         },
         {
             path: 'likes'
         }
-    ]);
+    ]).limit(postAmount);
 
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
+    ]);
 
     //(2 Build template
     //(3 Render template
@@ -313,17 +324,22 @@ exports.getBusinessPage = catchAsync(async (req, res, next) =>{
 
 
 exports.getEduTrain = catchAsync(async (req, res, next) =>{
+    let postAmount = 15;
+    
     //(1 get all posts from post collection
-    const posts = await Post.find().sort({_id: -1}).populate([
+    const posts = await Post.find({category: "Education and Training"}).sort({_id: -1}).populate([
         {
             path: 'reviews'
         },
         {
             path: 'likes'
         }
-    ]);
+    ]).limit(postAmount);
 
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
+    ]);
 
     //(2 Build template
     //(3 Render template
@@ -336,17 +352,22 @@ exports.getEduTrain = catchAsync(async (req, res, next) =>{
 
 
 exports.getEntertainment = catchAsync(async (req, res, next) =>{
+    let postAmount = 20;
+
     //(1 get all posts from post collection
-    const posts = await Post.find().sort({_id: -1}).populate([
+    const posts = await Post.find({category: "Entertainment"}).sort({_id: -1}).populate([
         {
             path: 'reviews'
         },
         {
             path: 'likes'
         }
-    ]);
+    ]).limit(postAmount);
 
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
+    ]);
 
     //(2 Build template
     //(3 Render template
@@ -359,17 +380,22 @@ exports.getEntertainment = catchAsync(async (req, res, next) =>{
 
 
 exports.getEngineering = catchAsync(async (req, res, next) =>{
+    let postAmount = 15;
+
     //(1 get all posts from post collection
-    const posts = await Post.find().sort({_id: -1}).populate([
+    const posts = await Post.find({category: "Engineering"}).sort({_id: -1}).populate([
         {
             path: 'reviews'
         },
         {
             path: 'likes'
         }
-    ]);
+    ]).limit(postAmount);
 
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
+    ]);
 
     //(2 Build template
     //(3 Render template
@@ -382,17 +408,22 @@ exports.getEngineering = catchAsync(async (req, res, next) =>{
 
 
 exports.getHealthSci = catchAsync(async (req, res, next) =>{
+    let postAmount = 15;
+
     //(1 get all posts from post collection
-    const posts = await Post.find().sort({_id: -1}).populate([
+    const posts = await Post.find({category: "Health Science"}).sort({_id: -1}).populate([
         {
             path: 'reviews'
         },
         {
             path: 'likes'
         }
-    ]);
+    ]).limit(postAmount);
 
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
+    ]);
 
     //(2 Build template
     //(3 Render template
@@ -405,17 +436,22 @@ exports.getHealthSci = catchAsync(async (req, res, next) =>{
 
 
 exports.getInfoTech = catchAsync(async (req, res, next) =>{
+    let postAmount = 15;
+
     //(1 get all posts from post collection
-    const posts = await Post.find().sort({_id: -1}).populate([
+    const posts = await Post.find({category: "Information Technology"}).sort({_id: -1}).populate([
         {
             path: 'reviews'
         },
         {
             path: 'likes'
         }
-    ]);
+    ]).limit(postAmount);
 
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
+    ]);
 
     //(2 Build template
     //(3 Render template
@@ -428,17 +464,22 @@ exports.getInfoTech = catchAsync(async (req, res, next) =>{
 
 
 exports.getManufacturingPage = catchAsync(async (req, res, next) =>{
+    let postAmount = 15;
+
     //(1 get all posts from post collection
-    const posts = await Post.find().sort({_id: -1}).populate([
+    const posts = await Post.find({category: "Manufacturing"}).sort({_id: -1}).populate([
         {
             path: 'reviews'
         },
         {
             path: 'likes'
         }
-    ]);
+    ]).limit(postAmount);
 
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
+    ]);
 
     //(2 Build template
     //(3 Render template
@@ -451,17 +492,22 @@ exports.getManufacturingPage = catchAsync(async (req, res, next) =>{
 
 
 exports.getMarketingPage = catchAsync(async (req, res, next) =>{
+    let postAmount = 15;
+
     //(1 get all posts from post collection
-    const posts = await Post.find().sort({_id: -1}).populate([
+    const posts = await Post.find({category: "Marketing"}).sort({_id: -1}).populate([
         {
             path: 'reviews'
         },
         {
             path: 'likes'
         }
-    ]);
+    ]).limit(postAmount);
 
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
+    ]);
 
     //(2 Build template
     //(3 Render template
@@ -475,17 +521,22 @@ exports.getMarketingPage = catchAsync(async (req, res, next) =>{
 
 
 exports.getSoftDev = catchAsync(async (req, res, next) =>{
+    let postAmount = 20;
+
     //(1 get all posts from post collection
-    const posts = await Post.find().sort({_id: -1}).populate([
+    const posts = await Post.find({category: "Software Development"}).sort({_id: -1}).populate([
         {
             path: 'reviews'
         },
         {
             path: 'likes'
         }
-    ]);
+    ]).limit(postAmount);
 
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
+    ]);
 
     //(2 Build template
     //(3 Render template
@@ -498,17 +549,22 @@ exports.getSoftDev = catchAsync(async (req, res, next) =>{
 
 
 exports.getOthersPage = catchAsync(async (req, res, next) =>{
+    let postAmount = 20;
+
     //(1 get all posts from post collection
-    const posts = await Post.find().sort({_id: -1}).populate([
+    const posts = await Post.find({category: "Others"}).sort({_id: -1}).populate([
         {
             path: 'reviews'
         },
         {
             path: 'likes'
         }
-    ]);
+    ]).limit(postAmount);
 
-    const bills = await Post.aggregate([{ $sample: { size: 6 } }]);
+    const bills = await Post.aggregate([
+        { $match: { billboard: true } },
+        { $sample: { size: 5 } }
+    ]);
 
     //(2 Build template
     //(3 Render template
@@ -519,32 +575,3 @@ exports.getOthersPage = catchAsync(async (req, res, next) =>{
     });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-// exports.getOneUser = catchAsync(async (req, res, next) => {
-//     const userProfile = await User.findOne({ _id: req.params.id }).populate({ 
-//         path: 'post', 
-//         fields: 'headline id photo description category' 
-//     });
-
-//     if (!userProfile) {
-//         return next();
-//     }
-
-//     // 2) Build template
-//     // 3) Render template using data from 1)
-//     res.status(200).render('user-dashboard', {
-//         title: `${userProfile.username}`,
-//         userProfile
-//     });
-// });

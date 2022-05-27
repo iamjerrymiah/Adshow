@@ -81,14 +81,13 @@
 
 
 
-
+	
 	<div class="section">
 		<div class="container">
 			<div class="row g-5">
 				
 				<% posts.forEach(function(post) { %> 
 					<% if(post.category === 'Art'){ %>
-
 					<% var imgLoop = post.photo %>
 					<% var photoLoop = imgLoop.split('.').pop() %>
 
@@ -114,7 +113,7 @@
 							<div class="post-meta mb-1">
 								<span class="category"><%= post.category %></span> &mdash;
 
-								<span class="date"><%= post.createdAt.toLocaleString('en-us', {day:'2-digit', month:'long', year:'numeric'}) %></span>
+								<span class="date" style="font-size: smaller;"><%= post.createdAt.toLocaleString('en-us', {day:'2-digit', month:'long', year:'numeric'}) %></span>
 								
 							</div>
 
