@@ -5,7 +5,7 @@ const User = require('../models/userModel');
 
 exports.getOverviewPage = catchAsync(async (req, res, next) =>{
     //(1 get all posts from post collection
-    let postAmount = 10;
+    let postAmount = 20;
 
     const posts = await Post.find().sort({_id: -1}).populate([
         {

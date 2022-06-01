@@ -20,9 +20,9 @@
 
 					<% if(bill.photo !== 'vitualpost.jpg') { %>
 							<div class="item">
-								<div class="post-entry d-lg-flex">
+								<!-- <div class="post-entry d-lg-flex"> -->
 
-									<div class="me-lg-5 thumbnail mb-4 mb-lg-0" 
+									<div class="thumbnail" 
 									style="text-align: center; background-color: #000;">
 
 									<% if(photoLoop === 'MP4'|| photoLoop === 'mp4' || photoLoop === 'MP2' || photoLoop === 'mp2' || photoLoop === 'WEBM' || photoLoop === 'webm' || photoLoop === 'AVI' || photoLoop === 'avi' || photoLoop === 'ogg' || photoLoop === 'wmv' || photoLoop === 'MOV' || photoLoop === 'mov') { %>
@@ -41,19 +41,8 @@
 									</div>
 									
 
-									<div class="content align-self-center">
-										<div class="post-meta mb-3">
-											<a href="/<%= bill.slug %>" class="category" style="color: whitesmoke;"><%= bill.category %></a> &mdash;
-											<span class="date"><%= bill.createdAt.toLocaleString('en-us', {day:'2-digit', month:'long', year:'numeric'}) %></span>
-
-										</div>
-										<h4 ><a href="/<%= bill.slug %>">
-											<%= headlineLoop %>
-										</a></h4>
-										
-
-									</div>
-								</div>
+									
+								<!-- </div> -->
 							</div>
 							<% } %>
 							<% } %>
@@ -94,7 +83,7 @@
 					<% var headlineLoop = headLoop.split('-_-_-_').shift() %>
 
 					<% if(post.photo !== 'vitualpost.jpg') { %>
-				<div class="col-lg-10" style="margin-bottom: -40px;">
+				<div class="col-lg-10" style="margin-bottom: -40px; border-bottom: 12px solid rgb(216, 214, 214);">
 					<div class="post-entry d-block small-post-entry-v">
 						<div class="content">
 						
@@ -116,7 +105,7 @@
 								
 							</div>
 
-							<h6><a href="/<%= post.slug %>"><%= headlineLoop %></a></h6>
+							<h6><a href="/<%= post.slug %>" style="color: rgb(66, 66, 66);"><%= headlineLoop %></a></h6>
 							
 						</div>
 						<div class="thumbnail" style="background-color: #000; text-align: center;">

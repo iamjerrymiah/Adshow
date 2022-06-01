@@ -24,6 +24,11 @@ const postSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    active: { //setting post to false, not delete
+        type: Boolean,
+        default: true,
+        select: false
+    },
     createdAt:{
         type: Date,
         default: Date.now()

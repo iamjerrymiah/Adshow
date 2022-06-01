@@ -5593,6 +5593,18 @@ input:checked ~ .accordion-content {
 	animation-delay: 0.2s;
 }
 
+
+.site-nav.sticky{
+  background: whitesmoke;
+  position: fixed;
+  width: 100%;
+  padding: 10px 80px;
+  top: 0;
+  transition: all 0.4s ease;
+  box-shadow: 0px 1px 15px rgb(0 0 0 / 10%);
+  z-index: 999;
+}
+
 @keyframes jump {
 	0%, 100% {
 		transform: translateY(0);

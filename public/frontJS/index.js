@@ -168,6 +168,9 @@ if (userPasswordForm)
   if (alertMessage) showAlert('success', alertMessage, 20);  
   
 
+
+
+  //File Input Functionality
   var inputs = document.querySelectorAll('.inputfile');
   Array.prototype.forEach.call(inputs, function(input){
 	var label	 = input.nextElementSibling,
@@ -190,6 +193,14 @@ if (userPasswordForm)
 
 
 
+//Sticky Nav bar
+window.addEventListener('scroll', function(){
+  var header = document.querySelector('.site-nav');
+  header.classList.toggle("sticky", window.scrollY > 0);
+});
+
+
+
 
 //lazy loading functionality
 const container = document.getElementById('lazyLoadID');
@@ -198,7 +209,7 @@ const loading = document.querySelector('.loading');
 window.addEventListener('scroll', () => {
 	const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 	
-	if(clientHeight + scrollTop >= scrollHeight - 5) {
+	if(clientHeight + scrollTop >= scrollHeight - 3) {
 		// show the loading animation
     showLoading();
 	}
@@ -227,6 +238,9 @@ async function getPost() {
  
   
   addDataToDOM(data);
+  addDataToDOM2(data);
+  addDataToDOM3(data);
+
   } catch (err) {
     console.log(err);
     
@@ -262,7 +276,7 @@ function addDataToDOM(data) {
 	postElement.innerHTML = `
   <div class="row g-5" style="margin-top: 5px;">
 			
-				<div class="col-lg-10" style="margin-bottom: -40px;">
+				<div class="col-lg-10" style="margin-bottom: -40px; border-bottom: 12px solid rgb(216, 214, 214);">
 					<div class="post-entry d-block small-post-entry-v">
 						<div class="content">
 						
@@ -284,7 +298,7 @@ function addDataToDOM(data) {
 								
 							</div>
 
-							<h6><a href="/${data.post.posts[0].slug}">${data.post.posts[0].headline.split('-_-_-_').shift()}</a></h6>
+							<h6><a href="/${data.post.posts[0].slug}" style="color: rgb(66, 66, 66);">${data.post.posts[0].headline.split('-_-_-_').shift()}</a></h6>
 							
 						</div>
 						<div class="thumbnail" style="background-color: #000; text-align: center;">
@@ -299,6 +313,158 @@ function addDataToDOM(data) {
                 ${data.post.posts[0].likes.length} Likes</a></li>
 								<li style="margin-top: 15px;"><a href="/<%= post.slug %>"><span class="icon-commenting" aria-hidden="true"></span>
 									${data.post.posts[0].reviews.length} Comments</a></li>
+							</ul>
+						</div>
+
+					</div>
+
+			</div>
+		</div>
+  `
+    }
+
+  container.appendChild(postElement);
+
+  loading.classList.remove('show');
+};
+
+
+
+function addDataToDOM2(data) {
+	const postElement = document.createElement('div');
+  postElement.classList.add('container')
+
+      let imgLoop = data.post.posts[1].photo;
+      let photoLoop = imgLoop.split('.').pop();
+
+      function imageDiv() {
+        if(photoLoop === 'MP4'|| photoLoop === 'mp4' || photoLoop === 'MP2' || photoLoop === 'mp2' || photoLoop === 'WEBM' || photoLoop === 'webm' || photoLoop === 'AVI' || photoLoop === 'avi' || photoLoop === 'ogg' || photoLoop === 'wmv' || photoLoop === 'MOV' || photoLoop === 'mov') { 
+        return `<video src="images/posts/${data.post.posts[1].photo}" 
+          style="max-width: 100%; height: 300px;" autoplay muted></video>	`
+        }else if(photoLoop === 'jpg' || photoLoop === 'JPG'|| photoLoop === 'PNG' || photoLoop === 'png' || photoLoop === 'JPEG' || photoLoop === 'jpeg' || photoLoop === 'GIF' || photoLoop === 'gif' || photoLoop === 'tiff' || photoLoop === 'psd' || photoLoop === 'PDF' || photoLoop === 'pdf') {
+        return `<img src="images/posts/${data.post.posts[1].photo}" alt="" 
+        class="img-fluid">`
+        }
+      };
+      
+
+    if(data.post.posts[1].photo !== 'vitualpost.jpg') {
+	postElement.innerHTML = `
+  <div class="row g-5" style="margin-top: 5px;">
+			
+				<div class="col-lg-10" style="margin-bottom: -40px; border-bottom: 12px solid rgb(216, 214, 214);">
+					<div class="post-entry d-block small-post-entry-v">
+						<div class="content">
+						
+							<a href="${data.post.posts[1].slug}" class="post-author d-flex align-items-center">
+								<div class="author-pic" style="margin-top: 5px;">
+									<img src="images/users/${data.post.posts[1].user.photo}" alt="Image">
+								</div>
+								<div class="text">
+									<strong style="color: #000;"> @${data.post.posts[1].user.username}</strong>
+								</div>
+								</a>
+							</div>
+							
+
+							<div class="post-meta mb-1">
+								<span class="category">${data.post.posts[1].category}</span> &mdash;
+
+								<span class="date" style="font-size: smaller;">${data.post.posts[1].createdAt.split('T').shift()}</span>
+								
+							</div>
+
+							<h6><a href="/${data.post.posts[1].slug}" style="color: rgb(66, 66, 66);">${data.post.posts[0].headline.split('-_-_-_').shift()}</a></h6>
+							
+						</div>
+						<div class="thumbnail" style="background-color: #000; text-align: center;">
+						
+              	<a href="/${data.post.posts[1].slug}">
+								${imageDiv()}
+								</a>
+						
+
+							<ul class="admin-list blog-sing" style="height: 60px; background-color: rgb(32, 32, 32);">     
+								<li style="margin-top: 15px;"><a href="/<%= post.slug %>"><span class="icon-heart" aria-hidden="true"></span>
+                ${data.post.posts[1].likes.length} Likes</a></li>
+								<li style="margin-top: 15px;"><a href="/<%= post.slug %>"><span class="icon-commenting" aria-hidden="true"></span>
+									${data.post.posts[1].reviews.length} Comments</a></li>
+							</ul>
+						</div>
+
+					</div>
+
+			</div>
+		</div>
+  `
+    }
+
+  container.appendChild(postElement);
+
+  loading.classList.remove('show');
+};
+
+
+
+function addDataToDOM3(data) {
+	const postElement = document.createElement('div');
+  postElement.classList.add('container')
+
+      let imgLoop = data.post.posts[2].photo;
+      let photoLoop = imgLoop.split('.').pop();
+
+      function imageDiv() {
+        if(photoLoop === 'MP4'|| photoLoop === 'mp4' || photoLoop === 'MP2' || photoLoop === 'mp2' || photoLoop === 'WEBM' || photoLoop === 'webm' || photoLoop === 'AVI' || photoLoop === 'avi' || photoLoop === 'ogg' || photoLoop === 'wmv' || photoLoop === 'MOV' || photoLoop === 'mov') { 
+        return `<video src="images/posts/${data.post.posts[2].photo}" 
+          style="max-width: 100%; height: 300px;" autoplay muted></video>	`
+        }else if(photoLoop === 'jpg' || photoLoop === 'JPG'|| photoLoop === 'PNG' || photoLoop === 'png' || photoLoop === 'JPEG' || photoLoop === 'jpeg' || photoLoop === 'GIF' || photoLoop === 'gif' || photoLoop === 'tiff' || photoLoop === 'psd' || photoLoop === 'PDF' || photoLoop === 'pdf') {
+        return `<img src="images/posts/${data.post.posts[2].photo}" alt="" 
+        class="img-fluid">`
+        }
+      };
+      
+
+    if(data.post.posts[2].photo !== 'vitualpost.jpg') {
+	postElement.innerHTML = `
+  <div class="row g-5" style="margin-top: 5px;">
+			
+				<div class="col-lg-10" style="margin-bottom: -40px; border-bottom: 12px solid rgb(216, 214, 214);">
+					<div class="post-entry d-block small-post-entry-v">
+						<div class="content">
+						
+							<a href="${data.post.posts[2].slug}" class="post-author d-flex align-items-center">
+								<div class="author-pic" style="margin-top: 5px;">
+									<img src="images/users/${data.post.posts[2].user.photo}" alt="Image">
+								</div>
+								<div class="text">
+									<strong style="color: #000;"> @${data.post.posts[2].user.username}</strong>
+								</div>
+								</a>
+							</div>
+							
+
+							<div class="post-meta mb-1">
+								<span class="category">${data.post.posts[2].category}</span> &mdash;
+
+								<span class="date" style="font-size: smaller;">${data.post.posts[2].createdAt.split('T').shift()}</span>
+								
+							</div>
+
+							<h6><a href="/${data.post.posts[2].slug}" style="color: rgb(66, 66, 66);">${data.post.posts[2].headline.split('-_-_-_').shift()}</a></h6>
+							
+						</div>
+						<div class="thumbnail" style="background-color: #000; text-align: center;">
+						
+              	<a href="/${data.post.posts[2].slug}">
+								${imageDiv()}
+								</a>
+						
+
+							<ul class="admin-list blog-sing" style="height: 60px; background-color: rgb(32, 32, 32);">     
+								<li style="margin-top: 15px;"><a href="/<%= post.slug %>"><span class="icon-heart" aria-hidden="true"></span>
+                ${data.post.posts[2].likes.length} Likes</a></li>
+								<li style="margin-top: 15px;"><a href="/<%= post.slug %>"><span class="icon-commenting" aria-hidden="true"></span>
+									${data.post.posts[2].reviews.length} Comments</a></li>
 							</ul>
 						</div>
 
