@@ -193,11 +193,11 @@ if (userPasswordForm)
 
 
 
-//Sticky Nav bar
-window.addEventListener('scroll', function(){
-  var header = document.querySelector('.site-nav');
-  header.classList.toggle("sticky", window.scrollY > 0);
-});
+// //Sticky Nav bar
+// window.addEventListener('scroll', function(){
+//   var header = document.querySelector('.site-nav');
+//   header.classList.toggle("sticky", window.scrollY > 0);
+// });
 
 
 
@@ -209,7 +209,7 @@ const loading = document.querySelector('.loading');
 window.addEventListener('scroll', () => {
 	const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 	
-	if(clientHeight + scrollTop >= scrollHeight - 3) {
+	if(clientHeight + scrollTop >= scrollHeight - 5) {
 		// show the loading animation
     showLoading();
 	}
