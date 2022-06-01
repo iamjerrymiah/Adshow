@@ -115,10 +115,10 @@ exports.reserveBillBoard = catchAsync(async (req, res, next) =>{
 });
 
 
-//API for HomePage lazy loading
+//API for lazy loading
 exports.lazyLoadPost = catchAsync(async (req, res, next) =>{
   let page = parseInt(req.params.page);
-  let postAmount = 3;
+  let postAmount = 1;
 
   const posts = await Post.find()
     .sort({_id: -1})
